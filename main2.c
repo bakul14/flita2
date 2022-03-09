@@ -1,81 +1,78 @@
 #include <stdio.h>
-
+#define max_power 20
 
 int main() {
-	int arr1[100];
-	int arr2[100];
+	int set1[max_power] = {0};
+	int set2[max_power] = {0};
 	int choice = 0;
-	int k, l;
+	int i = 0;
+	int power1 = 0;
+	int power2 = 0;
 
-	
-	printf("Enter 10 elements of the first set:\n");
-	for (k = 0; k < 10; k++)
-	{
-		scanf("%d", &arr1[k]);
+	printf("Enter the power of the 1st set (no more than 20): ");
+	scanf("%d", &power1);
+	if (power1 >= max_power) {
+		power1 = max_power;
+		printf("\n\rPower of the 1st set is set to %d\n\r", power1);
 	}
-	printf("Enter 10 elements of the second set:\n");
-	for (l = 0; l < 10; l++)
-	{	
-		scanf("%d", &arr2[l]);
-	}
+	else printf("Power of the 1st set is set to %d\n\r", power1);
+	printf("Enter elements of the 1st set:\n\r");
+	for (i = 0; i < power1; i++) scanf("%d", &set1[i]);
+	printf("Initialization the 1st set is OK\n\n\r");
 
-	while (choice != 9) {
-		printf("\nCurrent elements of the set 1:\n");
-		for (int i = 0; i < k; i++)
-		{
-			printf("%d ", arr1[i]);
-		}
-		printf("\nCurrent elements of the set 2:\n");
-		for (int i = 0; i < l; i++)
-		{
-			printf("%d ", arr2[i]);
-		}
-		printf("\nSelect an action:\n");
-		printf("1.Add element\t");
-		printf("2.Delete element\n");
-		printf("9.Exit\n");
+
+    printf("Enter the power of the 2nd set (no more than 20): ");
+    scanf("%d", &power2);
+    if (power2 >= max_power) {
+        power2 = max_power;
+        printf("\n\rPower of the 2nd set is set to %d\n\r", power2);
+    }
+    else printf("Power of the 2nd set is set to %d\n\r", power2);
+    printf("Enter elements of the 2nd set:\n\r");
+    for (i = 0; i < power2; i++) scanf("%d", &set2[i]);
+    printf("Initialization the 2nd set is OK\n\r");
+
+
+	while (1) {
+		printf("\n\rSet 1 now:\n\r");
+		for (int i = 0; i < power1; i++) printf("%d ", set1[i]);
+		printf("\n\n\rSet 2 now:\n\r");
+		for (int i = 0; i < power2; i++) printf("%d ", set2[i]);
+		printf("\n\nSelect an action:\n");
+		printf("1 - add element,  2 - delete element,  666 - close program\n\r");
 
 		scanf("%d", &choice);
-		if (choice == 9) {
-			return 0;
+		switch (choice) {
+			case 666: return 0;
+			case 1: {
+				choice = 0;
+            	printf("Select the set for add element (1 or 2): ");
+				scanf("%d", &choice);
+				if (choice == 1) {
+					printf("\n\rEnter element: ");
+					scanf("%d", &set1[power1]);
+					power1++;
+				}
+				if (choice == 2) {
+					printf("Enter element: ");
+					scanf("%d", &set2[power2]);
+					power2++;
+				}
+			} break;
+			case 2: {
+				choice = 0;
+				printf("Select the set for delete element (1 or 2): ");
+				scanf("%d", &choice);
+				if (choice == 1) {
+					set1[power1] = 0;
+					power1--;
+				}
+				if (choice == 2) {
+					set2[power2] = 0;
+					power2--;
+				}
+			} break;
 		}
-		else if (choice == 1) {
-			choice = 0;
-			printf("Select the set you want to add the element to:\n");
-			printf("1.First\t");
-			printf("2.Second\n");
-			scanf("%d", &choice);
-			if (choice == 1) {
-				printf("Enter element:\n");
-				scanf("%d", &arr1[k]);
-				k++;
-			}
-
-			if (choice == 2) {
-				printf("Enter element:\n");
-				scanf("%d", &arr2[l]);
-				l++;
-			}
-				
-			
-		}
-		else if(choice == 2) {
-			choice = 0;
-			printf("Select the set you want to delete the element to:\n");
-			printf("1.First\t");
-			printf("2.Second\n");
-			scanf("%d", &choice);
-			if (choice == 1) {
-				arr1[k] = -858993460;
-				k--;
-			}
-
-			if (choice == 2) {
-				arr2[l] = -858993460;
-				l++;
-			}
-		}
-		system("cls");
 	}
 	return 0;
 }
