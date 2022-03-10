@@ -1,4 +1,4 @@
-﻿#include <stdio.h>
+#include <stdio.h>
 #define max_power 20
 #define _CRT_SECURE_NO_WARNINGS
 
@@ -7,10 +7,10 @@ int main() {
 	int set2[max_power] = { 0 };
 	int choice = 0;
 	int i = 0;
-        int j = 0;
+	int j = 0;
 	int power1 = 0;
 	int power2 = 0;
-        int element = 0;
+	int element = 0;
 
 	printf("Enter the power of the 1st set (no more than 20): ");
 	scanf_s("%d", &power1);
@@ -66,19 +66,25 @@ int main() {
 			choice = 0;
 			printf("Select the set for delete element (1 or 2): ");
 			scanf_s("%d", &choice);
-                        printf("\n\rEnter element for delete: ");
-                        scanf_s("%d", &element);
+			printf("\n\rEnter element for delete: ");
+			scanf_s("%d", &element);
 			if (choice == 1) {
 				for (i = 0; i < power1; i++) {
-                                    if (set1[i] == element) {
-                                        for (j = i; j < power1; j++) set1[j] = set1[j+1];
-				        power1--; 
-                                        break;
-                                    }
-                                }
+					if (set1[i] == element) {
+						for (j = i; j < power1; j++) set1[j] = set1[j + 1];
+						power1--;
+						break;
+					}
+				}
 			}
 			if (choice == 2) {
-				
+				for (i = 0; i < power2; i++) {
+					if (set2[i] == element) {
+						for (j = i; j < power2; j++) set2[j] = set2[j + 1];
+						power2--;
+						break;
+					}
+				}
 			}
 		} break;
 		}
