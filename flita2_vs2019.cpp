@@ -7,8 +7,10 @@ int main() {
 	int set2[max_power] = { 0 };
 	int choice = 0;
 	int i = 0;
+        int j = 0;
 	int power1 = 0;
 	int power2 = 0;
+        int element = 0;
 
 	printf("Enter the power of the 1st set (no more than 20): ");
 	scanf_s("%d", &power1);
@@ -64,13 +66,19 @@ int main() {
 			choice = 0;
 			printf("Select the set for delete element (1 or 2): ");
 			scanf_s("%d", &choice);
+                        printf("\n\rEnter element for delete: ");
+                        scanf_s("%d", &element);
 			if (choice == 1) {
-				set1[power1] = 0;
-				power1--;
+				for (i = 0; i < power1; i++) {
+                                    if (set1[i] == element) {
+                                        for (j = i; j < power1; j++) set1[j] = set1[j+1];
+				        power1--; 
+                                        break;
+                                    }
+                                }
 			}
 			if (choice == 2) {
-				set2[power2] = 0;
-				power2--;
+				
 			}
 		} break;
 		}
